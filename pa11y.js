@@ -1,9 +1,18 @@
 const express = require('express')
 const pa11y = require('pa11y')
 const puppeteer = require('puppeteer')
+const cors = require('cors')
+
 const PORT = process.env.PORT || 5000
 
 const app = express()
+
+const corsOption = {
+    origin: '*',
+    optionSuccessStatus: 200
+}
+
+app.use(cors(corsOption));
 
 app.get('/api/pa11y', async (req, res) => {
   if (!req.query.url) {
